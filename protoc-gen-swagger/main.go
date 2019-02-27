@@ -22,7 +22,7 @@ var (
 	allowMerge                 = flag.Bool("allow_merge", false, "if set, generation one swagger file out of multiple protos")
 	mergeFileName              = flag.String("merge_file_name", "apidocs", "target swagger file name prefix after merge")
 	useJSONNamesForFields      = flag.Bool("json_names_for_fields", false, "if it sets Field.GetJsonName() will be used for generating swagger definitions, otherwise Field.GetName() will be used")
-	repeatedPathParamSeparator = flag.String("repeated_path_param_separator", "csv", "configures how repeated fields should be split. Allowed values are `csv`, `pipes`, `ssv` and `tsv`.")
+	repeatedPathParamSeparator = flag.String("repeated_path_param_separator", "csv", "configures how repeated fields should be split. Allowed values are `csv`, `pipes`, `ssv`, `tsv` and `multi`.")
 	versionFlag                = flag.Bool("version", false, "print the current verison")
 	allowRepeatedFieldsInBody  = flag.Bool("allow_repeated_fields_in_body", false, "allows to use repeated field in `body` and `response_body` field of `google.api.http` annotation option")
 	includePackageInTags       = flag.Bool("include_package_in_tags", false, "if unset, the gRPC service name is added to the `Tags` field of each operation. if set and the `package` directive is shown in the proto file, the package name will be prepended to the service name")

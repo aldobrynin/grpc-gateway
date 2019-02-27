@@ -132,14 +132,15 @@ func queryParams(message *descriptor.Message, field *descriptor.Field, prefix st
 		}
 
 		param := swaggerParameterObject{
-			Name:        prefix + field.GetName(),
-			Description: desc,
-			In:          "query",
-			Default:     schema.Default,
-			Type:        schema.Type,
-			Items:       schema.Items,
-			Format:      schema.Format,
-			Required:    required,
+			Name:             prefix + field.GetName(),
+			Description:      desc,
+			In:               "query",
+			Default:          schema.Default,
+			Type:             schema.Type,
+			Items:            schema.Items,
+			Format:           schema.Format,
+			Required:         required,
+			CollectionFormat: reg.GetRepeatedPathParamSeparatorName(),
 		}
 
 		if isEnum {
@@ -1238,9 +1239,9 @@ func updateSwaggerDataFromComments(swaggerObject interface{}, comment string, is
 				}
 				// overrides the schema value only if it's empty
 				// keep the comment precedence when updating the package definition
-				 if descriptionValue.Len() == 0 || isPackageObject {
+				if descriptionValue.Len() == 0 || isPackageObject {
 					descriptionValue.Set(reflect.ValueOf(description))
-				 }
+				}
 			}
 			return nil
 		}
@@ -1248,7 +1249,7 @@ func updateSwaggerDataFromComments(swaggerObject interface{}, comment string, is
 
 	// There was no summary field on the swaggerObject. Try to apply the
 	// whole comment into description if the swagger object description is empty.
-	if descriptionValue.CanSet() && (descriptionValue.Len() == 0 || isPackageObject){
+	if descriptionValue.CanSet() && (descriptionValue.Len() == 0 || isPackageObject) {
 		descriptionValue.Set(reflect.ValueOf(strings.Join(paragraphs, "\n\n")))
 		return nil
 	}

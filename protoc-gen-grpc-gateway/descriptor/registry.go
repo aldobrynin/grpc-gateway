@@ -391,6 +391,8 @@ func (r *Registry) SetRepeatedPathParamSeparator(name string) error {
 		sep = ' '
 	case "tsv":
 		sep = '\t'
+	case "multi":
+		sep = 0
 	default:
 		return fmt.Errorf("unknown repeated path parameter separator: %s", name)
 	}
